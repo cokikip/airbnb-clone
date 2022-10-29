@@ -73,8 +73,6 @@ export async function getStaticProps() {
     "https://api.npoint.io/3258fd3f7a33f0aab25a"
   ).then((res) => res.json());
 
-  console.log(exploreData);
-
   return {
     props: {
       exploreData,

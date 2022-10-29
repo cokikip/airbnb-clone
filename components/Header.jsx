@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 // Bars3Icon, UserCircleIcon, UserIcon;
-function Header() {
+export const Header = () => {
   return (
     <header className="sticky top-0 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       {/* Left */}
@@ -42,6 +42,4 @@ function Header() {
       </div>
     </header>
   );
-}
-
-export default Header;
+};

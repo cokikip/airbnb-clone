@@ -1,6 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Banner, Header, MediumCard, SmallCard } from "../components";
+import {
+  Banner,
+  Footer,
+  Header,
+  LargeCard,
+  MediumCard,
+  SmallCard,
+} from "../components";
 
 interface Home {
   exploreData: any;
@@ -40,7 +47,17 @@ const Home: NextPage<Home> = ({ exploreData, cardData }) => {
             ))}
           </div>
         </section>
+        <section>
+          <LargeCard
+            key="1"
+            img="https://links.papareact.com/4cj"
+            title="The Greatest Outdoors"
+            description="Wishlist curated by Airbnb."
+            buttonText="Get Inspired"
+          />
+        </section>
       </main>
+      <Footer />
     </div>
   );
 };
@@ -49,11 +66,11 @@ export default Home;
 
 export async function getStaticProps() {
   const exploreData = await fetch(
-    "https://api.npoint.io/9c4575f3beb3d9820e85"
+    "https://api.npoint.io/4c523b3e88e26658b9fb"
   ).then((res) => res.json());
 
   const cardData = await fetch(
-    "https://api.npoint.io/8842401c2bdb9c071db8"
+    "https://api.npoint.io/3258fd3f7a33f0aab25a"
   ).then((res) => res.json());
 
   console.log(exploreData);

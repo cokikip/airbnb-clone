@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Banner from "../components/Banner";
-import Header from "../components/Header";
+import { Banner, Header, MediumCard, SmallCard } from "../components";
 
 interface Home {
   exploreData: any;
+  cardData: any;
 }
 
-const Home: NextPage<Home> = ({ exploreData }) => {
+const Home: NextPage<Home> = ({ exploreData, cardData }) => {
   return (
     <div className="">
       <Head>
@@ -21,8 +21,21 @@ const Home: NextPage<Home> = ({ exploreData }) => {
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
           {/* Fetch data from the api */}
-          {exploreData?.map((item: any) => (
-            <h2>{item?.location}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {exploreData?.map((item: any, index: any) => (
+              <SmallCard
+                key={index}
+                img={item?.img}
+                distance={item?.distance}
+                location={item?.location}
+              />
+            ))}
+          </div>
+        </section>
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live anywhere</h2>
+          {cardData?.map(({ img, title }: any, index: any) => (
+            <MediumCard key={index} img={img} title={title} />
           ))}
         </section>
       </main>
@@ -37,11 +50,16 @@ export async function getStaticProps() {
     "https://api.npoint.io/9c4575f3beb3d9820e85"
   ).then((res) => res.json());
 
+  const cardData = await fetch(
+    "https://api.npoint.io/8842401c2bdb9c071db8"
+  ).then((res) => res.json());
+
   console.log(exploreData);
 
   return {
     props: {
       exploreData,
+      cardData,
     },
   };
 }
